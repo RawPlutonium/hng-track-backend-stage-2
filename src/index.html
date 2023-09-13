@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" type="text/css" href="static/swagger-ui.css">
+    <link rel="stylesheet" type="text/css" href="static/index.css">
+</head>
+<body>
+    <div id="swagger-ui"></div  >
+    <script src="static/swagger-ui-bundle.js"></script>
+    <script src="static/swagger-ui-standalone-preset.js"></script>
+    <script>
+        window.onload = function() {
+            const ui = SwaggerUIBundle({
+                url: "static/swagger.yaml",
+                dom_id: '#swagger-ui',
+                deepLinking: true,
+            });
+        };
+    </script>
+</body>
+</html>

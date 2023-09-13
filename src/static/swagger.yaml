@@ -1,0 +1,107 @@
+openapi: 3.0.0
+info:
+  title: Person Management API
+  description: API for managing persons
+  version: 1.0.0
+
+paths:
+  /api:
+    post:
+      summary: Create a new person
+      tags:
+        - Persons
+      requestBody:
+        description: Person data
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Person'
+      responses:
+        '201':
+          description: Person created successfully
+        '400':
+          description: Bad request
+        '500':
+          description: Internal server error
+
+  /api/{user_id}:
+    get:
+      summary: Get person by user_id
+      tags:
+        - Persons
+      parameters:
+        - in: path
+          name: user_id
+          required: true
+          description: User ID of the person to retrieve
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Person'
+        '404':
+          description: Person not found
+        '500':
+          description: Internal server error
+
+    put:
+      summary: Update person by user_id
+      tags:
+        - Persons
+      parameters:
+        - in: path
+          name: user_id
+          required: true
+          description: User ID of the person to update
+          schema:
+            type: string
+      requestBody:
+        description: Updated person data
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Person'
+      responses:
+        '200':
+          description: Person updated successfully
+        '404':
+          description: Person not found
+        '500':
+          description: Internal server error
+
+    delete:
+      summary: Delete person by user_id
+      tags:
+        - Persons
+      parameters:
+        - in: path
+          name: user_id
+          required: true
+          description: User ID of the person to delete
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Person deleted successfully
+        '404':
+          description: Person not found
+        '500':
+          description: Internal server error
+
+components:
+  schemas:
+    Person:
+      type: object
+      properties:
+        _id:
+          type: string
+        name:
+          type: string
+        age:
+          type: integer
